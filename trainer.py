@@ -3,11 +3,16 @@ import tkinter as tk
 import time as dt
 import random as ran
 
+
+
+#create variables
 score = 0
 counter = 0
 
+#create constants
 TIMER = 10
 FONT = "Arial",20
+
 #generate random x and y values 
 def ranx():
     return ran.randint(100,1780)
@@ -35,7 +40,7 @@ def click():
     else:
         end()
 
-
+#function to start the game
 def start():
     global new_time ,target,lblscore, start_time
     game = tk.Tk()
@@ -51,16 +56,56 @@ def start():
     game.mainloop()
 
 
-
+#function to bring up the end screen
 def end():
+    global lbl1,btnYes,btnNo,endscreen
     endscreen = tk.Tk()
-    endscore = tk.Label(endscreen,text = "Your final score is "+str(score),font = ("Arial",20))
-    endscore.place(x=50,y=20)
-    lbl1 = tk.Label(endscreen,text = "Do you want to upload to leaderboard?",font = ("Arial",15))
-    btnYes = tk.Button(text = "Yes",font = ("Arial"))
+    endscreen.title("End Screen")
+    endscreen.geometry("500x500")
+    endscore = tk.Label(endscreen,text = "Your final score is "+str(score),font = FONT)
+    endscore.place(x=50,y=50)
+    lbl1 = tk.Label(endscreen,text = "Do you want to upload to leaderboard?",font = FONT)
+    lbl1.place(x=25,y=100)
+    btnYes = tk.Button(endscreen, text = "Yes",font = FONT,command = leaderboardYes)
+    btnYes.place(x=25,y=150)
+    btnNo = tk.Button(endscreen,text = "No",font = FONT,command = leaderboardNo)
+    btnNo.place(x=125,y=150)
     endscreen.mainloop()
 
+def leaderboardYes():
+    global lbl1, btnYes, btnNo, endscreen, back
+    lbl1.place_forget()
+    btnYes.place_forget()
+    btnNo.place_forget()
+    back = tk.Button(endscreen, text = "Changed your mind?",command = lambda:replace("Yes"),font = FONT)
+    back.place(x=50,y=200)
+
+def leaderboardNo():
+    global lbl1, btnYes, btnNo,back,home
+    lbl1.place_forget()
+    btnYes.place_forget()
+    btnNo.place_forget()
+    back = tk.Button(endscreen, text = "Changed your mind?",command = lambda:replace("No"),font = FONT)
+    back.place(x=50,y=200)
+    home = tk.Button(endscreen, text = "MainMenu",command = returnHome,font = FONT)
+    home.place(x=50,y=150)
 
 
+def replace(choice):
+    global lbl1, btnYes, btnNo, back,home
+    lbl1.place(x=25,y=100)
+    btnYes.place(x=25,y=150)
+    btnNo.place(x=125,y=150)
+    if choice == "Yes":
+        back.place_forget()
+    else:
+        back.place_forget()
+        home.place_forget()
 
-start()
+def returnHome():
+    endscreen.destroy()
+    game.destroy()
+    import mainmenu
+    mainmenu.Mmenu()
+
+#start()
