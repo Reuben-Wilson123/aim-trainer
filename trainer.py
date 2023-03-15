@@ -7,7 +7,6 @@ score = 0
 counter = 0
 
 TIMER = 10
-
 FONT = "Arial",20
 #generate random x and y values 
 def ranx():
