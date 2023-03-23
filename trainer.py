@@ -42,12 +42,12 @@ def click():
 
 #function to start the game
 def start():
-    global new_time ,target,lblscore, start_time
-    game = tk.Tk()
+    global new_time ,target,lblscore, start_time, game
+    game = tk.Toplevel()
     game.geometry("1920x1080")
     game.config(bg = "#cc0203")
     img1 = tk.PhotoImage(file = "aimtrainertarget.png")
-    target = tk.Button(game,image = img1,command = click)
+    target = tk.Button(master = game,image = img1,command = click)
     target.place(x=100,y=100)
     lblscore = tk.Label(game,text = "Score = 0",font = FONT,bg = "#cc0203",fg = "White")
     lblscore.place(x=0,y=10)
@@ -103,6 +103,7 @@ def replace(choice):
         home.place_forget()
 
 def returnHome():
+    global game
     endscreen.destroy()
     game.destroy()
     import mainmenu
