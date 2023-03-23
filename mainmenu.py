@@ -2,7 +2,7 @@
 import tkinter as tk 
 
 #import modules
-#import trainer
+
 
 
 
@@ -12,6 +12,12 @@ def play():
     menu.withdraw()
     import trainer
     trainer.start()
+
+def tutorial1():
+    global menu
+    menu.withdraw()
+    import tutorial
+    tutorial.tutorial()
 
 try:
     menu = tk.Tk()
@@ -26,7 +32,8 @@ try:
 
     btnplay = tk.Button(menu,text = "Play",font  = ("Arial",20),bg = "#e02b4d",fg = "White",command = play)
     btnplay.place(x=50,y=200)
-    btntutorial = tk.Button(menu,text = "Tutorial",font = ("Arial",20),bg = "#e02b4d",fg = "White")
+
+    btntutorial = tk.Button(menu,text = "Tutorial",font = ("Arial",20),bg = "#e02b4d",fg = "White",command = tutorial1)
     btntutorial.place(x=50,y=300)
 
     btnscore = tk.Button(menu, text = "Leaderboard",font = ("Arial",20), bg = "#e02b4d", fg = "White")
