@@ -10,7 +10,7 @@ score = 0
 counter = 0
 
 #create constants
-TIMER = 10
+TIMER = 5
 FONT = "Arial",20
 
 #generate random x and y values 
@@ -73,12 +73,19 @@ def end():
     endscreen.mainloop()
 
 def leaderboardYes():
-    global lbl1, btnYes, btnNo, endscreen, back
+    global lbl1, btnYes, btnNo, endscreen, back, nameEntry, btnSub, lbl2
     lbl1.place_forget()
     btnYes.place_forget()
     btnNo.place_forget()
     back = tk.Button(endscreen, text = "Changed your mind?",command = lambda:replace("Yes"),font = FONT)
     back.place(x=50,y=200)
+    nameEntry = tk.Entry(endscreen,font = FONT)
+    nameEntry.place(x = 50, y = 50)
+    btnSub = tk.Button(endscreen, text = "Submit", font = FONT, command = submit)
+    btnSub.place(x= 50, y =125)
+    lbl2 = tk.Label(endscreen, text = "Enter Name", font = FONT)
+    lbl2.place(x = 50, y=10)
+
 
 def leaderboardNo():
     global lbl1, btnYes, btnNo,back,home
@@ -88,25 +95,38 @@ def leaderboardNo():
     back = tk.Button(endscreen, text = "Changed your mind?",command = lambda:replace("No"),font = FONT)
     back.place(x=50,y=200)
     home = tk.Button(endscreen, text = "MainMenu",command = returnHome,font = FONT)
-    home.place(x=50,y=150)
+    home.place(x=50,y=125)
 
 
 def replace(choice):
-    global lbl1, btnYes, btnNo, back,home
+    global lbl1, btnYes, btnNo, back,home, nameEntry, btnSub, lbl2
     lbl1.place(x=25,y=100)
     btnYes.place(x=25,y=150)
     btnNo.place(x=125,y=150)
     if choice == "Yes":
         back.place_forget()
+        nameEntry.place_forget()
+        btnSub.place_forget()
+        lbl2.place_forget()
     else:
         back.place_forget()
         home.place_forget()
 
 def returnHome():
-    global game
+    global game,endscreen
     endscreen.destroy()
     game.destroy()
     import mainmenu
     mainmenu.Mmenu()
 
+def submit():
+    global name, score
+    file = open("leaderboard.txt","a")
+    name = nameEntry.get()
+    file.write(name)
+    file.write(", ")
+    file.write(str(score))
+    file.write("\n")
+    file.close()
+    returnHome()
 #start()
