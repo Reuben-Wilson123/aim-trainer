@@ -1,24 +1,7 @@
 #import librarys
 import tkinter as tk 
 
-#import modules
-
-
-
-
 #create functions
-def play():
-    global menu
-    menu.withdraw()
-    import trainer
-    trainer.start()
-
-def tutorial1():
-    global menu
-    menu.withdraw()
-    import tutorial
-    tutorial.tutorial()
-
 def change(scene):
     global menu
     menu.withdraw()
@@ -29,7 +12,8 @@ def change(scene):
         import tutorial
         tutorial.tutorial()
     else:
-        pass
+        import scoreboard
+        scoreboard.leaderboard()
 
 try:
     menu = tk.Tk()
@@ -48,7 +32,7 @@ try:
     btntutorial = tk.Button(menu,text = "Tutorial",font = ("Arial",20),bg = "#e02b4d",fg = "White",command = lambda: change("tutorial"))
     btntutorial.place(x=50,y=300)
 
-    btnscore = tk.Button(menu, text = "Leaderboard",font = ("Arial",20), bg = "#e02b4d", fg = "White")
+    btnscore = tk.Button(menu, text = "Leaderboard",font = ("Arial",20), bg = "#e02b4d", fg = "White",command = lambda: change("leaderboard"))
     btnscore.place(x=50,y=400)
 
     image1 = tk.PhotoImage(file = "aimtrainerimg1.png")
