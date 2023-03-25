@@ -42,7 +42,8 @@ def click():
 
 #function to start the game
 def start():
-    global new_time ,target,lblscore, start_time, game
+    global new_time ,target,lblscore, start_time, game, score
+    score = 0
     game = tk.Toplevel()
     game.geometry("1920x1080")
     game.config(bg = "#cc0203")
@@ -113,7 +114,7 @@ def replace(choice):
         home.place_forget()
 
 def returnHome():
-    global game,endscreen
+    global game,endscreen, scor
     endscreen.destroy()
     game.destroy()
     import mainmenu

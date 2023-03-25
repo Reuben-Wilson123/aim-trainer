@@ -19,6 +19,18 @@ def tutorial1():
     import tutorial
     tutorial.tutorial()
 
+def change(scene):
+    global menu
+    menu.withdraw()
+    if scene == "play":
+        import trainer
+        trainer.start()
+    elif scene == "tutorial":
+        import tutorial
+        tutorial.tutorial()
+    else:
+        pass
+
 try:
     menu = tk.Tk()
 
@@ -30,10 +42,10 @@ try:
     title = tk.Label(menu, text = "Aim Trainer",font = ("Arial",30,"bold","underline"),bg = "#e02b4d",fg = "white")
     title.place(x=175,y=100)
 
-    btnplay = tk.Button(menu,text = "Play",font  = ("Arial",20),bg = "#e02b4d",fg = "White",command = play)
+    btnplay = tk.Button(menu,text = "Play",font  = ("Arial",20),bg = "#e02b4d",fg = "White",command = lambda: change("play"))
     btnplay.place(x=50,y=200)
 
-    btntutorial = tk.Button(menu,text = "Tutorial",font = ("Arial",20),bg = "#e02b4d",fg = "White",command = tutorial1)
+    btntutorial = tk.Button(menu,text = "Tutorial",font = ("Arial",20),bg = "#e02b4d",fg = "White",command = lambda: change("tutorial"))
     btntutorial.place(x=50,y=300)
 
     btnscore = tk.Button(menu, text = "Leaderboard",font = ("Arial",20), bg = "#e02b4d", fg = "White")
