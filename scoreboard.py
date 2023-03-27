@@ -1,11 +1,12 @@
 import tkinter as tk 
 
 def leaderboard():
+    global lb 
     counter = 1
     lb = tk.Tk()
     lb.title("Leaderboard")
-    lb.geometry("1000x500")
-    file = open("leaderboard.txt","r")
+    lb.geometry("750x1000")
+    lb.config(bg = "#e02b4d")
     scorelist = []
     board = ""
     items = ""
@@ -31,8 +32,18 @@ def leaderboard():
                 output +=board
     except:
         pass
-    lbl1 = tk.Label(lb,text = output, font = ("Arial",20),justify = "left")
-    lbl1.place(x=100,y=100)
+    lblTitle = tk.Label(lb,text = "Leaderboard",bg = "#e02b4d",fg = "white",font = ("Arial",30))
+    lblTitle.place(x=150,y=50)
+    lbl1 = tk.Label(lb,text = output, font = ("Arial",20),justify = "left",bg = "#e02b4d",fg = "white")
+    lbl1.place(x=150,y=150)
+    home = tk.Button(lb,text = "MainMenu",command = mainMenu,font = ("Arial",15),bg = "#e02b4d",fg = "white")
+    home.place(x=50,y=500)
     lb.mainloop()
+
+def mainMenu():
+    global lb 
+    lb.destroy()
+    import mainmenu
+    mainmenu.Mmenu()
 
 leaderboard()
