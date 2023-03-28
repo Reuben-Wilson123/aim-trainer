@@ -10,7 +10,7 @@ score = 0
 counter = 0
 
 #create constants
-TIMER = 5
+TIMER = 15
 FONT = "Arial",20
 
 #generate random x and y values 
@@ -73,6 +73,7 @@ def end():
     btnNo.place(x=125,y=150)
     endscreen.mainloop()
 
+#function that runs if the user want to submit their score to the leaderboard
 def leaderboardYes():
     global lbl1, btnYes, btnNo, endscreen, back, nameEntry, btnSub, lbl2
     lbl1.place_forget()
@@ -87,7 +88,7 @@ def leaderboardYes():
     lbl2 = tk.Label(endscreen, text = "Enter Name", font = FONT)
     lbl2.place(x = 50, y=10)
 
-
+#function that runs if the user doesnt want to submit their score to the leaderboard
 def leaderboardNo():
     global lbl1, btnYes, btnNo,back,home
     lbl1.place_forget()
@@ -98,7 +99,7 @@ def leaderboardNo():
     home = tk.Button(endscreen, text = "MainMenu",command = returnHome,font = FONT)
     home.place(x=50,y=125)
 
-
+#function toallow the user to change their ming about the leaderboard
 def replace(choice):
     global lbl1, btnYes, btnNo, back,home, nameEntry, btnSub, lbl2
     lbl1.place(x=25,y=100)
@@ -113,6 +114,7 @@ def replace(choice):
         back.place_forget()
         home.place_forget()
 
+#function to return the user to the home screen
 def returnHome():
     global game,endscreen, scor
     endscreen.destroy()
@@ -120,6 +122,7 @@ def returnHome():
     import mainmenu
     mainmenu.Mmenu()
 
+#function to submit the users score and name to the leaderboard.
 def submit():
     global name, score
     file = open("leaderboard.txt","a")
@@ -130,4 +133,3 @@ def submit():
     file.write("\n")
     file.close()
     returnHome()
-#start()
