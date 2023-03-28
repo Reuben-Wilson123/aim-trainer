@@ -15,7 +15,7 @@ With the added ability to get competative and fight to get to the top rank on th
  - random
  - sys
 
-# How to run
+## How to run
 To run this code download all the files.
 Add them to your IDE. For example in visual studio they are all in the solution exploorer.
 Run the main menu.
